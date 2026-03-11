@@ -713,19 +713,228 @@
   .sticky-cta a.phone { color: var(--accent); font-weight: 700; text-decoration: none; font-size: 1.05rem; }
   .sticky-close { background: none; border: none; color: rgba(255,255,255,0.5); cursor: pointer; font-size: 1.2rem; margin-left: 10px; }
 
+  /* ── MOBILE HAMBURGER BUTTON ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column; justify-content: center; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 8px;
+    flex-shrink: 0;
+  }
+  .nav-hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: #fff; border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE DRAWER ── */
+  .mobile-nav-drawer {
+    display: none;
+    position: fixed; top: 70px; left: 0; right: 0; bottom: 0;
+    background: var(--navy); z-index: 190;
+    overflow-y: auto; padding: 20px 0 40px;
+  }
+  .mobile-nav-drawer.open { display: block; }
+
+  .mobile-nav-section { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+  .mobile-nav-toggle {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; color: #fff;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600;
+    text-align: left;
+  }
+  .mobile-nav-toggle .m-chevron {
+    font-size: 0.7rem; color: var(--accent); transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+  .mobile-nav-toggle.open .m-chevron { transform: rotate(180deg); }
+
+  .mobile-nav-submenu {
+    display: none; padding: 0 24px 16px;
+  }
+  .mobile-nav-submenu.open { display: block; }
+
+  .mobile-sub-group { margin-bottom: 16px; }
+  .mobile-sub-title {
+    font-size: 0.68rem; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 8px; padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .mobile-sub-link {
+    display: block; color: rgba(255,255,255,0.72); text-decoration: none;
+    font-size: 0.85rem; padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: color 0.2s;
+  }
+  .mobile-sub-link:hover { color: var(--accent-light); }
+
+  .mobile-nav-cta {
+    padding: 20px 24px 0;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .mobile-nav-cta a {
+    display: block; text-align: center; text-decoration: none;
+    padding: 14px; border-radius: 10px; font-weight: 700; font-size: 0.95rem;
+  }
+  .mobile-nav-cta .m-btn-primary { background: var(--accent); color: var(--navy); }
+  .mobile-nav-cta .m-btn-outline {
+    border: 2px solid rgba(255,255,255,0.3); color: #fff;
+  }
+
+  /* ── TABLET (≤ 1024px) ── */
+  @media (max-width: 1024px) {
+    .nav-links { gap: 0; }
+    .nav-item > a { padding: 0 9px; font-size: 0.78rem; }
+    .nav-phone { display: none; }
+  }
+
+  /* ── TABLET PORTRAIT / LARGE MOBILE (≤ 900px) ── */
   @media (max-width: 900px) {
+    /* NAV */
     nav { padding: 0 20px; }
     .nav-links { display: none; }
-    .hero-container { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px; }
+    .nav-hamburger { display: flex; }
+    .nav-cta .nav-phone { display: none; }
+
+    /* HERO */
+    .hero { min-height: auto; }
+    .hero-container {
+      grid-template-columns: 1fr; gap: 36px;
+      padding: 50px 20px 60px;
+    }
+    .hero h1 { font-size: 2.2rem; }
+    .hero-subtitle { font-size: 1rem; }
+    .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; }
+    .btn-hero-primary, .btn-hero-outline {
+      justify-content: center; padding: 15px 24px;
+    }
+    .hero-trust {
+      gap: 12px; flex-wrap: wrap; justify-content: center;
+      margin-top: 32px; padding-top: 24px;
+    }
+    .trust-stat .num { font-size: 1.5rem; }
     .hero-form-card { padding: 28px 24px; }
-    .services-grid, .steps-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* SERVICES */
+    .services { padding: 70px 20px; }
+    .services-header { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 40px; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+
+    /* HOW IT WORKS */
+    .how-it-works { padding: 70px 20px; }
+    .steps-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     .steps-grid::before { display: none; }
-    .testimonials-layout { grid-template-columns: 1fr; }
-    .stats-inner { grid-template-columns: repeat(2, 1fr); }
-    .why-layout { grid-template-columns: 1fr; }
-    .expertise-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
-    .services, .how-it-works, .testimonials, .why-choose, .cta-strip, .expertise, .stats-bar { padding-left: 20px; padding-right: 20px; }
+
+    /* STATS */
+    .stats-bar { padding: 40px 20px; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .stat-item .big-num { font-size: 2.2rem; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 70px 20px; }
+    .testimonials-layout { grid-template-columns: 1fr; gap: 32px; margin-top: 40px; }
+
+    /* WHY CHOOSE */
+    .why-choose { padding: 70px 20px; }
+    .why-layout { grid-template-columns: 1fr; gap: 48px; }
+    .why-badge-float { bottom: -16px; right: 16px; padding: 16px 20px; }
+    .why-badge-float .badge-num { font-size: 1.8rem; }
+
+    /* CTA STRIP */
+    .cta-strip { padding: 70px 20px; }
+    .cta-strip-actions { flex-direction: column; align-items: stretch; gap: 12px; }
+    .btn-cta-white, .btn-cta-outline { justify-content: center; }
+
+    /* EXPERTISE */
+    .expertise { padding: 70px 20px; }
+    .expertise-grid { grid-template-columns: 1fr; gap: 20px; margin-top: 40px; }
+
+    /* FOOTER */
+    footer { padding: 50px 20px 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 36px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .footer-bottom-links { flex-wrap: wrap; gap: 12px 20px; }
+
+    /* STICKY */
+    .sticky-cta { padding: 12px 20px; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  }
+
+  /* ── MOBILE (≤ 600px) ── */
+  @media (max-width: 600px) {
+    /* NAV */
+    .btn-primary { padding: 8px 14px; font-size: 0.78rem; }
+
+    /* HERO */
+    .hero-container { padding: 40px 16px 50px; }
+    .hero h1 { font-size: 1.9rem; line-height: 1.15; }
+    .hero-subtitle { font-size: 0.95rem; }
+    .hero-trust { gap: 8px; }
+    .trust-divider { display: none; }
+    .trust-stat { flex: 1 1 calc(50% - 8px); }
+    .trust-stat .num { font-size: 1.4rem; }
+    .hero-form-card { padding: 24px 18px; border-radius: 16px; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+
+    /* SERVICES */
+    .services { padding: 56px 16px; }
+    .services-grid { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 1.7rem; }
+
+    /* HOW IT WORKS */
+    .how-it-works { padding: 56px 16px; }
+    .steps-grid { grid-template-columns: 1fr; gap: 24px; }
+    .step-num { width: 60px; height: 60px; font-size: 1.2rem; }
+
+    /* STATS */
+    .stats-bar { padding: 36px 16px; }
+    .stats-inner { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .stat-item .big-num { font-size: 1.9rem; }
+    .stat-item .stat-lbl { font-size: 0.78rem; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 56px 16px; }
+    .testimonial-featured { padding: 28px 24px; }
+    .testimonial-text { font-size: 1rem; }
+    .testimonial-mini { padding: 18px 20px; }
+
+    /* WHY CHOOSE */
+    .why-choose { padding: 56px 16px; }
+    .why-points { gap: 16px; }
+    .why-point { padding: 18px 20px; gap: 14px; }
+    .why-point-icon { width: 40px; height: 40px; font-size: 1.1rem; }
+    .why-badge-float { right: 12px; bottom: -14px; padding: 12px 16px; }
+    .why-badge-float .badge-num { font-size: 1.5rem; }
+
+    /* CTA STRIP */
+    .cta-strip { padding: 56px 16px; }
+
+    /* EXPERTISE */
+    .expertise { padding: 56px 16px; }
+    .expert-card-img { height: 160px; font-size: 3rem; }
+    .expert-card-body { padding: 20px; }
+
+    /* FOOTER */
+    footer { padding: 44px 16px 20px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom-links { flex-direction: column; gap: 10px; }
+
+    /* STICKY */
+    .sticky-cta { padding: 10px 16px; }
+    .sticky-cta p { display: none; }
+  }
+
+  /* ── SMALL MOBILE (≤ 380px) ── */
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 1.65rem; }
+    .hero-form-card { padding: 20px 14px; }
+    .stats-inner { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .stat-item .big-num { font-size: 1.6rem; }
+    .section-title { font-size: 1.5rem; }
   }
 </style>
 </head>
@@ -792,7 +1001,7 @@
         </div>
         <div class="mega-cta-box">
           <p>Not sure if you have a claim? Our advisors can help — free, 24/7.</p>
-          <a href="https://www.advice.co.uk/contact-us">Free Claim Check →</a>
+          <a href="#claim">Free Claim Check →</a>
         </div>
       </div>
     </div>
@@ -836,7 +1045,7 @@
         </div>
         <div class="mega-cta-box">
           <p>Injured at work? Find out if you have a claim — free advice, no obligation.</p>
-          <a href="https://www.advice.co.uk/contact-us">Check My Claim →</a>
+          <a href="#claim">Check My Claim →</a>
         </div>
       </div>
     </div>
@@ -877,7 +1086,7 @@
         </div>
         <div class="mega-cta-box">
           <p>Been in a road accident? Check your claim in minutes — free &amp; confidential.</p>
-          <a href="https://www.advice.co.uk/contact-us">Free Claim Check →</a>
+          <a href="#claim">Free Claim Check →</a>
         </div>
       </div>
     </div>
@@ -907,7 +1116,7 @@
         </div>
         <div class="mega-cta-box">
           <p>Suffered due to medical errors? Get expert advice today — free and confidential.</p>
-          <a href="https://www.advice.co.uk/contact-us">Check My Claim →</a>
+          <a href="#claim">Check My Claim →</a>
         </div>
       </div>
     </div>
@@ -945,9 +1154,138 @@
 
   <div class="nav-cta">
     <a href="tel:01615092856" class="nav-phone">📞 0161 509 2856</a>
-    <a href="https://www.advice.co.uk/contact-us" class="btn-primary">Free Claim Check</a>
+    <a href="#claim" class="btn-primary">Free Claim Check</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-nav-drawer" id="mobileDrawer">
+
+  <div class="mobile-nav-section">
+    <button class="mobile-nav-toggle" data-target="m-pi">Personal Injury <span class="m-chevron">▾</span></button>
+    <div class="mobile-nav-submenu" id="m-pi">
+      <div class="mobile-sub-group">
+        <div class="mobile-sub-title">Types of Injury</div>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/shoulder-injury-claim">Shoulder Injury Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/how-much-compensation-for-ankle-injury-claims">Ankle Injury Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/eye-injury-claims">Eye Injury Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/bone-fracture-claims">Broken/Fractured Bone Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/head-injury-accidents-compensation-claim">Head Injury Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/wrist-injury-accidents-claims">Wrist Injury Claims</a>
+      </div>
+      <div class="mobile-sub-group">
+        <div class="mobile-sub-title">General Injuries</div>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/dog-bite-claims">Dog Bite Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/burn-injury-claims">Burn Injury Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/ptsd-compensation">PTSD Compensation</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/electric-shock-compensation-claim">Electric Shock Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/how-much-compensation-for-allergic-reaction-injury-claims">Allergic Reaction Claims</a>
+      </div>
+      <div class="mobile-sub-group">
+        <div class="mobile-sub-title">Fatal &amp; Public Liability</div>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/fatal-accident-claim">Fatal Accident Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/public-liability-claim">Public Liability Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/public-liability-claim/pothole-compensation-claims">Pothole Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/public-liability-claim/how-to-claim-for-a-fall-in-the-street">Fall in the Street</a>
+      </div>
+      <div class="mobile-sub-group">
+        <div class="mobile-sub-title">Retailers &amp; Venues</div>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/tesco-personal-injury-claims">Tesco Injury Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/asda-personal-injury-claims">Asda Injury Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/mcdonalds-personal-injury-claims">McDonald's Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/how-to-claim/how-to-claim-compensation-for-personal-injury-in-a-pub-or-bar">Pub &amp; Bar Injury Claims</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-nav-section">
+    <button class="mobile-nav-toggle" data-target="m-aw">Accident at Work <span class="m-chevron">▾</span></button>
+    <div class="mobile-nav-submenu" id="m-aw">
+      <div class="mobile-sub-group">
+        <div class="mobile-sub-title">Workplace Accidents</div>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/wet-floor-accident-compensation-claim">Slipped on Wet Floor</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/accident-at-work-claim/fall-from-height-claims">Fall From Height</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/accident-at-work-claim/warehouse-accident-claims">Warehouse Accidents</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/accident-at-work-claim/construction-accident-claims">Construction Accidents</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/accident-at-work-claim/hazardous-chemicals-at-work-claims">Hazardous Chemicals</a>
+      </div>
+      <div class="mobile-sub-group">
+        <div class="mobile-sub-title">Your Rights</div>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/i-have-had-an-accident-at-work-what-are-my-rights">Rights After an Accident</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/accident-at-work-claim/faqs/can-i-be-sacked-for-having-an-accident-at-work">Can I Be Sacked?</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/accident-at-work-claim/faqs/can-i-claim-compensation-for-an-accident-at-work-when-self-employed">Self-Employed Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/accident-at-work-claim/faqs/how-long-after-a-workplace-injury-can-you-make-a-claim">Time Limits</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-nav-section">
+    <button class="mobile-nav-toggle" data-target="m-rta">Road Accidents <span class="m-chevron">▾</span></button>
+    <div class="mobile-nav-submenu" id="m-rta">
+      <div class="mobile-sub-group">
+        <div class="mobile-sub-title">Vehicle Accidents</div>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/road-traffic-accident-claims/whiplash-compensation-claims-calculator">Whiplash Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/road-traffic-accident-claims/car-accident-claims">Car Accident Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/road-traffic-accident-claims/taxi-accident-claims">Taxi Accident Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/road-traffic-accident-claims/motorcycle-accident-claims">Motorcycle Accidents</a>
+      </div>
+      <div class="mobile-sub-group">
+        <div class="mobile-sub-title">Cycling &amp; Pedestrians</div>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/road-traffic-accident-claims/cycling-accident-claims">Cycling Accident Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/road-traffic-accident-claims/pedestrian-injury-compensation">Pedestrian Injury Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/road-traffic-accident-claims/how-to-claim-for-a-hit-and-run-car-accident">Hit and Run Claims</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-nav-section">
+    <button class="mobile-nav-toggle" data-target="m-med">Medical Negligence <span class="m-chevron">▾</span></button>
+    <div class="mobile-nav-submenu" id="m-med">
+      <div class="mobile-sub-group">
+        <div class="mobile-sub-title">Clinical Negligence</div>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/medical-negligence-compensation">Medical Negligence Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/medical-negligence-compensation/gp-negligence-claims">GP Negligence Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/personal-injury-compensation/faqs/how-to-claim-compensation-for-a-surgical-error-surgical-negligence">Surgical Error Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/medical-negligence-compensation/birth-injury-compensation-claims/retained-placenta-compensation-claims">Birth Injury Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/how-to-claim/care-home-negligence-claims/report-negligence-in-a-nursing-home">Care Home Negligence</a>
+      </div>
+      <div class="mobile-sub-group">
+        <div class="mobile-sub-title">Other Claims</div>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/sexual-abuse-compensation">Sexual Abuse Compensation</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/how-to-claim/criminal-injuries-compensation">Criminal Injuries</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/data-breach-compensation/faq/how-to-claim-for-a-student-accommodation-data-breach">Data Breach Claims</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-nav-section">
+    <button class="mobile-nav-toggle" data-target="m-more">More <span class="m-chevron">▾</span></button>
+    <div class="mobile-nav-submenu" id="m-more">
+      <div class="mobile-sub-group">
+        <div class="mobile-sub-title">Other Claims</div>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/can-i-make-a-housing-disrepair-claim/research-and-statistics-on-rough-sleeping-numbers-in-the-uk">Housing Disrepair</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/how-to-claim/in-flight-injuries-from-unexpected-turbulence">In-Flight Injury Claims</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/the-parent-guide-for-couples-and-parents-who-separate-or-divorce">Family &amp; Divorce Guide</a>
+      </div>
+      <div class="mobile-sub-group">
+        <div class="mobile-sub-title">Company</div>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/support">Support</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/careers">Careers</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/contact-us-old">Contact Us</a>
+        <a class="mobile-sub-link" href="https://www.advice.co.uk/michael-higgins">Our Team</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-nav-cta">
+    <a href="#claim" class="m-btn-primary">Start Free Claim Check →</a>
+    <a href="tel:01615092856" class="m-btn-outline">📞 0161 509 2856</a>
+  </div>
+
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -956,13 +1294,13 @@
 
   <div class="hero-container">
     <div class="hero-content">
-      <div class="hero-badge">SRA Authorised &amp; Regulated</div>
+      <div class="hero-badge">SRA Authorised &amp; Regulated · JF Law Limited</div>
       <h1>Expert Legal Advice When <em>You Need It Most</em></h1>
       <p class="hero-subtitle">
         From personal injury to medical negligence — our expert advisors connect you with the right solicitor on a No Win, No Fee basis. Free advice, open 7 days a week, 24 hours a day.
       </p>
       <div class="hero-actions">
-        <a href="https://www.advice.co.uk/contact-us" class="btn-hero-primary">
+        <a href="#claim" class="btn-hero-primary">
           Start Your Free Claim
           <span>→</span>
         </a>
@@ -1269,7 +1607,7 @@
     <h2 class="reveal">Ready to Find Out What Your Claim Is Worth?</h2>
     <p class="reveal">Join thousands of people across the UK who've recovered the compensation they deserve. It starts with a free, no-obligation call.</p>
     <div class="cta-strip-actions reveal">
-      <a href="https://www.advice.co.uk/contact-us" class="btn-cta-white">Start Free Claim Check →</a>
+      <a href="#claim" class="btn-cta-white">Start Free Claim Check →</a>
       <a href="tel:01615092856" class="btn-cta-outline">📞 0161 509 2856</a>
     </div>
   </div>
@@ -1324,7 +1662,7 @@
       </a>
       <p>Expert legal advice and claims services across England and Wales. We connect people with specialist solicitors on a No Win, No Fee basis.</p>
       <p style="margin-top:8px">Europa House, 1 Conway Street, Birkenhead, CH41 6RY</p>
-      <p style="margin-top:4px"><a href="tel:01615092856" style="color:var(--accent-light); text-decoration:none; font-weight:600">0161 509 2856</a> &nbsp;|&nbsp; <a href="mailto:info@advice.co.uk" style="color:var(--accent-light); text-decoration:none;">info@advice.co.uk</a></p>
+      <p style="margin-top:4px"><a href="tel:01615092856" style="color:var(--accent-light); text-decoration:none; font-weight:600">0161 509 2856</a> &nbsp;|&nbsp; <a href="/cdn-cgi/l/email-protection#7c15121a133c1d180a151f19521f13520917" style="color:var(--accent-light); text-decoration:none;"><span class="__cf_email__" data-cfemail="533a3d353c133237253a30367d303c7d2638">[email&#160;protected]</span></a></p>
       <div class="fca-badge" style="margin-top:12px">SRA Authorised · SRA No: 839005</div>
     </div>
 
@@ -1355,29 +1693,21 @@
       <a href="https://www.advice.co.uk/careers">Careers</a>
       <a href="https://www.advice.co.uk/contact-us-old">Contact Us</a>
       <a href="https://www.advice.co.uk/michael-higgins">Our Team</a>
+      <a href="https://www.advice.co.uk/thank-you">Thank You</a>
     </div>
   </div>
 
   <div class="footer-bottom">
     <div style="max-width:900px">
       <p style="margin-bottom:8px; line-height:1.6;">Advice.co.uk is a trading name of <strong style="color:rgba(255,255,255,0.7)">JF Law Limited</strong>, a firm of solicitors authorised and regulated by the Solicitors Regulation Authority (SRA). JF Law Limited is registered in England and Wales and provides legal services to clients in England and Wales under the Advice trading name.</p>
-      <p style="margin-bottom:6px; line-height:1.6;"><strong style="color:rgba(255,255,255,0.6)">SRA Authorisation Number:</strong> 839005 &nbsp;|&nbsp; <strong style="color:rgba(255,255,255,0.6)">Law Society Number:</strong> 619586 &nbsp;|&nbsp; Registered in England and Wales &nbsp;|&nbsp; Registered office: Europa House, 1 Conway Street, Birkenhead, CH41 6RY &nbsp;|&nbsp; Email: <a href="mailto:info@advice.co.uk" style="color:var(--accent-light); text-decoration:none;">info@advice.co.uk</a></p>
+      <p style="margin-bottom:6px; line-height:1.6;"><strong style="color:rgba(255,255,255,0.6)">SRA Authorisation Number:</strong> 839005 &nbsp;|&nbsp; <strong style="color:rgba(255,255,255,0.6)">Law Society Number:</strong> 619586 &nbsp;|&nbsp; Registered in England and Wales &nbsp;|&nbsp; Registered office: Europa House, 1 Conway Street, Birkenhead, CH41 6RY &nbsp;|&nbsp; Email: <a href="/cdn-cgi/l/email-protection#eb82858d84ab8a8f9d82888ec58884c59e80" style="color:var(--accent-light); text-decoration:none;"><span class="__cf_email__" data-cfemail="721b1c141d321316041b11175c111d5c0719">[email&#160;protected]</span></a></p>
       <p style="line-height:1.6;">All legal services provided via this website are delivered by JF Law Limited. Use of this website does not create a solicitor-client relationship unless and until a formal agreement is entered into. JF Law Limited is subject to the SRA Standards and Regulations and professional rules applicable to solicitors in England and Wales.</p>
       <p style="margin-top:10px; font-weight:600; color:rgba(255,255,255,0.5)">© 2026 Advice.co.uk. All Rights Reserved.</p>
     </div>
     <div class="footer-bottom-links" style="flex-shrink:0; align-self:flex-start;">
-       <a href="https://www.advice.co.uk/about-us">About Us</a>
-       <a href="https://www.advice.co.uk/contact-us">Contact US</a>
-       <a href="https://www.advice.co.uk/careers">Career</a>
-      <a href="https://www.advice.co.uk/privacy-policy">Privacy Policy</a>
-      <a href="https://www.advice.co.uk/cookie-policy">Cookie Policy</a>
-      <a href="https://www.advice.co.uk/terms-of-use">Terms Of Use</a>
-      <a href="https://www.advice.co.uk/complaints-procedure">Complaints</a>
-      <a href="https://www.advice.co.uk/disclaimer">Disclaimer</a>
-      <a href="https://www.advice.co.uk/regulatory-information">Regulatory Information</a>
-           <a href="https://www.advice.co.uk/gdpr-compliance-statement">GDPR Compliance</a>
-           <a href="https://www.advice.co.uk/website-accessibility-statement">Website Accessebility</a>
-      
+      <a href="https://www.advice.co.uk/support">Privacy</a>
+      <a href="https://www.advice.co.uk/support">Cookies</a>
+      <a href="https://www.advice.co.uk/support">Terms</a>
     </div>
   </div>
 </footer>
@@ -1389,7 +1719,7 @@
   <button class="sticky-close" onclick="document.getElementById('stickyCta').classList.remove('show')">✕</button>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
@@ -1406,13 +1736,46 @@
     else stickyCta.classList.remove('show');
   });
 
-  // Smooth anchor scroll
-  document.querySelectorAll('a[href="https://www.advice.co.uk/contact-us"]').forEach(a => {
+  // Smooth anchor scroll for #claim links
+  document.querySelectorAll('a[href="#claim"]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
       document.getElementById('claim').scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   });
+
+  // Hamburger toggle
+  const hamburger = document.getElementById('navHamburger');
+  const drawer = document.getElementById('mobileDrawer');
+  if (hamburger && drawer) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      drawer.classList.toggle('open');
+      document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+    });
+    // Close drawer when a nav link inside it is clicked
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        drawer.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    // Mobile accordion submenus
+    document.querySelectorAll('.mobile-nav-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const submenu = document.getElementById(targetId);
+        const isOpen = submenu.classList.contains('open');
+        document.querySelectorAll('.mobile-nav-submenu.open').forEach(el => el.classList.remove('open'));
+        document.querySelectorAll('.mobile-nav-toggle.open').forEach(el => el.classList.remove('open'));
+        if (!isOpen) {
+          submenu.classList.add('open');
+          btn.classList.add('open');
+        }
+      });
+    });
+  }
 </script>
 
 </body>
